@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.usjt.desenvmob.aula03.MainActivity">
+    tools:context="br.usjt.desenvmob.aula03.controller.MainActivity">
 
     <EditText
         android:layout_width="0dp"

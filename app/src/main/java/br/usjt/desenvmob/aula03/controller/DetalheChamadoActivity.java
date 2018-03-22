@@ -1,11 +1,11 @@
-package br.usjt.desenvmob.aula03;
+package br.usjt.desenvmob.aula03.controller;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import br.usjt.desenvmob.aula03.R;
 
 public class DetalheChamadoActivity extends Activity {
 
@@ -15,7 +15,7 @@ public class DetalheChamadoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe_chamado);
-        txtNome = findViewById(R.id.chamado_nome);
+        txtNome = (TextView) findViewById(R.id.chamado_nome);
         Intent intent = getIntent();
         String nome = intent.getStringExtra(ListarChamadosActivity.CHAMADO);
         txtNome.setText(nome);

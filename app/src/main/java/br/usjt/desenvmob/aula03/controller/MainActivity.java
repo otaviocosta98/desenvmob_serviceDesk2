@@ -1,10 +1,12 @@
-package br.usjt.desenvmob.aula03;
+package br.usjt.desenvmob.aula03.controller;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import br.usjt.desenvmob.aula03.R;
 
 public class MainActivity extends Activity {
     public static final String FILA = "br.usjt.desenvmob.aula03.fila";
@@ -14,7 +16,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txtFila = findViewById(R.id.buscar_fila);
+        txtFila = (EditText) findViewById(R.id.buscar_fila);
     }
 
     public void buscarChamados(View view) {
