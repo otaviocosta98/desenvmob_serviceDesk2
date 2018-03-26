@@ -19,7 +19,6 @@ public class DetalheChamadoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe_chamado);
-        txtNome = (TextView) findViewById(R.id.chamado_nome);
         Intent intent = getIntent();
         Chamado chamado = (Chamado)intent.getSerializableExtra(ListarChamadosActivity.CHAMADO);
         ImageView foto = (ImageView) findViewById(R.id.foto_fila_detalhe);
