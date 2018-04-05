@@ -28,7 +28,13 @@ public class ListarChamadosActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_chamados);
         final Intent intent = getIntent();
-        String nomeFila = intent.getStringExtra(MainActivity.FILA);
+        String nomeFila = intent.getStringExtra(MainActivity.CHAMADO);
+        /*
+            try {
+            chamados = ChamadoNetwork.buscarChamados("http://meuIP:8080/arqsw_sdesk_a1/rest/chamados");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         chamados = Data.buscarChamados(nomeFila);
         listView = (ListView) findViewById(R.id.lista_chamados);
         ChamadoAdapter adapter = new ChamadoAdapter(this, chamados);
