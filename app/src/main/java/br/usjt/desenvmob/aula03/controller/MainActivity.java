@@ -14,9 +14,11 @@ import java.util.ArrayList;
 import br.usjt.desenvmob.aula03.R;
 import br.usjt.desenvmob.aula03.model.Chamado;
 import br.usjt.desenvmob.aula03.model.ChamadoNetwork;
+import br.usjt.desenvmob.aula03.model.Fila;
 
 public class MainActivity extends Activity {
     public static final String CHAMADO = "br.usjt.desenvmob.aula03.chamados";
+    public static final String FILA = "br.usjt.desenvmob.aula03.filas";
     private EditText txtFila;
     private Context context;
 
@@ -26,6 +28,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         txtFila = (EditText) findViewById(R.id.buscar_fila);
         context = this;
+        new DownloadJSONFila().execute("http:/10.71.4.156:8080/arqsw_sdesk_a1/rest/filas", "http:/10.71.4.156:8080/arqsw_sdesk_a1");
     }
 
     public void buscarChamados(View view) {
@@ -56,6 +59,29 @@ public class MainActivity extends Activity {
             Intent i = new Intent(context, ListarChamadosActivity.class);
             i.putExtra(CHAMADO, chamados);
             startActivity(i);
+        }
+    }
+
+    private class DownloadJSONFila extends AsyncTask<String , Void , ArrayList<Fila>> {
+
+        @Override
+        protected ArrayList<Fila> doInBackground(String... strings) {
+            ArrayList<Fila> filas = new ArrayList<>();
+
+            try {
+                //acho que o parametro string pode ser passado nesse buscar chamado. Testar depois
+                filas = ChamadoNetwork.getFilas(strings[0], strings[1]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return filas;
+        }
+
+        protected void onPostExecute(ArrayList<Fila> filas){
+//            Intent i = new Intent(context, ListarChamadosActivity.class);
+//            i.putExtra(FILA, filas);
+//            startActivity(i);
         }
     }
 }

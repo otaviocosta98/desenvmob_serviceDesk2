@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import br.usjt.desenvmob.aula03.R;
@@ -20,11 +21,16 @@ public class ChamadoAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<Chamado> chamados;
-    private ImageView imagem;
+    private ArrayList<Fila> filas;
 
     public ChamadoAdapter(Context context, ArrayList<Chamado> chamados) {
         this.context = context;
         this.chamados = chamados;
+        try {
+            this.filas = ChamadoNetwork.getFilas(null, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -62,11 +68,21 @@ public class ChamadoAdapter extends BaseAdapter {
 
         Chamado chamado = chamados.get(position);
         ViewHolder viewHolder = (ViewHolder) view.getTag();
-        viewHolder.getImagem().setImageDrawable(Util.getDrawableDinamic(context, chamado.getFila().getFigura()));
+//        viewHolder.getImagem().setImageDrawable(Util.getDrawableDinamic(context, chamado.getFila().getFigura()));
+        viewHolder.getImagem().setImageBitmap(filas.get(getFila(chamado.getFila().getId())).getImagem());
         viewHolder.getNumero().setText(String.format("numero: %d - status: %s", chamado.getNumero(), chamado.getStatus()));
         viewHolder.getDatas().setText(String.format("abertura: %tD - fechamento: %tD", chamado.getDataAbertura(), chamado.getDataFechamento()));
         viewHolder.getDescricao().setText(chamado.getDescricao());
 
         return view;
+    }
+
+    private int getFila(int id){
+        for (int i = 0; i < filas.size(); i++){
+            if(filas.get(i).getId() == id){
+                return i;
+            }
+        }
+        return -1;
     }
 }

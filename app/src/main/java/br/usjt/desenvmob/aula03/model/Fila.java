@@ -1,5 +1,7 @@
 package br.usjt.desenvmob.aula03.model;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +11,7 @@ import java.io.Serializable;
 public class Fila implements Serializable {
     private int id;
     private String nome, figura;
+    private Bitmap imagem;
 
     public Fila(int id, String nome, String figura) {
         this.id = id;
@@ -42,6 +45,14 @@ public class Fila implements Serializable {
 
     public void setFigura(String figura) {
         this.figura = figura;
+    }
+
+    public Bitmap getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(Bitmap imagem) {
+        this.imagem = imagem;
     }
 
     @Override
